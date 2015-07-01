@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace ChatterBox
+﻿namespace ChatterBox
 {
+    using System.Collections;
+    using System.Collections.Generic;
+
     public class ChatterBox : IChatterBox
     {
         public string Input(string s)
         {
             var stream = new StringStream(s);
-            bool ended = false;
 
             char currentState = 'A';
 
@@ -467,7 +463,6 @@ namespace ChatterBox
                     break;
                 case 'Z':
                     responseString = "Bye!";
-                    ended = true;
                     break;
                 default:
                     responseString = "Tell me about yourself";
