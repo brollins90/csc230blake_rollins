@@ -21,7 +21,7 @@ namespace ChatterBox
         {
             IChatterBox chatterBox = new ChatterBox();
 
-            string actual = chatterBox.Input(input);
+            string actual = chatterBox.ProcessString(input);
 
             Assert.Equal(expected, actual);
         }

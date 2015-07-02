@@ -5,7 +5,7 @@
 
     public class ChatterBox : IChatterBox
     {
-        public string Input(string s)
+        public string ProcessString(string s)
         {
             var stream = new StringStream(s);
 
