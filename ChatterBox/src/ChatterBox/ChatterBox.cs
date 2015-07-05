@@ -8,7 +8,7 @@
     {
         public enum State
         {
-            A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, STOP
+            A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, AA, AB, STOP
         }
 
         public string ProcessString(string s)
@@ -23,261 +23,141 @@
                 switch (currentState)
                 {
                     case State.A:
-                        switch (currentChar)
-                        {
-                            case 'E':
-                                currentState = State.W;
-                                break;
-                            case 'H':
-                                currentState = State.B;
-                                break;
-                            default:
-                                currentState = State.STOP;
-                                break;
-                        }
+                        currentState =
+                            (currentChar == 'E') ? State.B :
+                            (currentChar == 'H') ? State.F :
+                            State.STOP;
                         break;
                     case State.B:
-                        switch (currentChar)
-                        {
-                            case 'i':
-                                currentState = State.C;
-                                break;
-                            case 'o':
-                                currentState = State.D;
-                                break;
-                            default:
-                                currentState = State.STOP;
-                                break;
-                        }
+                        currentState =
+                            (currentChar == 'x') ? State.C :
+                            State.STOP;
                         break;
                     case State.C:
-                        currentState = State.STOP;
+                        currentState =
+                            (currentChar == 'i') ? State.D :
+                            State.STOP;
                         break;
                     case State.D:
-                        switch (currentChar)
-                        {
-                            case 'w':
-                                currentState = State.E;
-                                break;
-                            case ' ':
-                                currentState = State.Q;
-                                break;
-                            default:
-                                currentState = State.STOP;
-                                break;
-                        }
+                        currentState =
+                            (currentChar == 't') ? State.E :
+                            State.STOP;
                         break;
                     case State.E:
-                        switch (currentChar)
-                        {
-                            case 'd':
-                                currentState = State.G;
-                                break;
-                            case ' ':
-                                currentState = State.F;
-                                break;
-                            default:
-                                currentState = State.STOP;
-                                break;
-                        }
+                        currentState = State.STOP;
                         break;
                     case State.F:
-                        switch (currentChar)
-                        {
-                            case 'a':
-                                currentState = State.I;
-                                break;
-                            default:
-                                currentState = State.STOP;
-                                break;
-                        }
+                        currentState =
+                            (currentChar == 'e') ? State.G :
+                            (currentChar == 'o') ? State.K :
+                            State.STOP;
                         break;
                     case State.G:
-                        switch (currentChar)
-                        {
-                            case 'y':
-                                currentState = State.H;
-                                break;
-                            default:
-                                currentState = State.STOP;
-                                break;
-                        }
+                        currentState =
+                            (currentChar == 'l') ? State.H :
+                            State.STOP;
                         break;
                     case State.H:
-                        currentState = State.STOP;
+                        currentState =
+                            (currentChar == 'l') ? State.I :
+                            State.STOP;
                         break;
                     case State.I:
-                        switch (currentChar)
-                        {
-                            case 'r':
-                                currentState = State.J;
-                                break;
-                            default:
-                                currentState = State.STOP;
-                                break;
-                        }
+                        currentState =
+                            (currentChar == 'o') ? State.J :
+                            State.STOP;
                         break;
                     case State.J:
-                        switch (currentChar)
-                        {
-                            case 'e':
-                                currentState = State.K;
-                                break;
-                            default:
-                                currentState = State.STOP;
-                                break;
-                        }
+                        currentState =
+                            (currentChar == 'o') ? State.J :
+                            State.STOP;
                         break;
                     case State.K:
-                        switch (currentChar)
-                        {
-                            case ' ':
-                                currentState = State.L;
-                                break;
-                            default:
-                                currentState = State.STOP;
-                                break;
-                        }
+                        currentState =
+                            (currentChar == ' ') ? State.L :
+                            (currentChar == 'w') ? State.O :
+                            State.STOP;
                         break;
                     case State.L:
-                        switch (currentChar)
-                        {
-                            case 'y':
-                                currentState = State.M;
-                                break;
-                            default:
-                                currentState = State.STOP;
-                                break;
-                        }
+                        currentState =
+                            (currentChar == 'h') ? State.M :
+                            State.STOP;
                         break;
                     case State.M:
-                        switch (currentChar)
-                        {
-                            case 'o':
-                                currentState = State.N;
-                                break;
-                            default:
-                                currentState = State.STOP;
-                                break;
-                        }
+                        currentState =
+                            (currentChar == 'o') ? State.N :
+                            State.STOP;
                         break;
                     case State.N:
-                        switch (currentChar)
-                        {
-                            case 'u':
-                                currentState = State.O;
-                                break;
-                            default:
-                                currentState = State.STOP;
-                                break;
-                        }
+                        currentState =
+                            (currentChar == ' ') ? State.L :
+                            State.STOP;
                         break;
                     case State.O:
-                        switch (currentChar)
-                        {
-                            case '?':
-                                currentState = State.P;
-                                break;
-                            default:
-                                currentState = State.STOP;
-                                break;
-                        }
+                        currentState =
+                            (currentChar == ' ') ? State.R :
+                            (currentChar == 'd') ? State.P :
+                            State.STOP;
                         break;
                     case State.P:
-                        currentState = State.STOP;
+                        currentState =
+                            (currentChar == 'y') ? State.Q :
+                            State.STOP;
                         break;
                     case State.Q:
-                        switch (currentChar)
-                        {
-                            case 'h':
-                                currentState = State.R;
-                                break;
-                            default:
-                                currentState = State.STOP;
-                                break;
-                        }
-                        break;
-                    case State.R:
-                        switch (currentChar)
-                        {
-                            case 'o':
-                                currentState = State.S;
-                                break;
-                            default:
-                                currentState = State.STOP;
-                                break;
-                        }
-                        break;
-                    case State.S:
-                        switch (currentChar)
-                        {
-                            case ' ':
-                                currentState = State.T;
-                                break;
-                            default:
-                                currentState = State.STOP;
-                                break;
-                        }
-                        break;
-                    case State.T:
-                        switch (currentChar)
-                        {
-                            case 'h':
-                                currentState = State.U;
-                                break;
-                            default:
-                                currentState = State.STOP;
-                                break;
-                        }
-                        break;
-                    case State.U:
-                        switch (currentChar)
-                        {
-                            case 'o':
-                                currentState = State.V;
-                                break;
-                            default:
-                                currentState = State.STOP;
-                                break;
-                        }
-                        break;
-                    case State.V:
                         currentState = State.STOP;
                         break;
+                    case State.R:
+                        currentState =
+                            (currentChar == 'd') ? State.S :
+                            State.STOP;
+                        break;
+                    case State.S:
+                        currentState =
+                            (currentChar == 'o') ? State.T :
+                            State.STOP;
+                        break;
+                    case State.T:
+                        currentState =
+                            (currentChar == ' ') ? State.U :
+                            State.STOP;
+                        break;
+                    case State.U:
+                        currentState =
+                            (currentChar == 'y') ? State.V :
+                            State.STOP;
+                        break;
+                    case State.V:
+                        currentState =
+                            (currentChar == 'o') ? State.W :
+                            State.STOP;
+                        break;
                     case State.W:
-                        switch (currentChar)
-                        {
-                            case 'x':
-                                currentState = State.X;
-                                break;
-                            default:
-                                currentState = State.STOP;
-                                break;
-                        }
+                        currentState =
+                            (currentChar == 'u') ? State.X :
+                            State.STOP;
                         break;
                     case State.X:
-                        switch (currentChar)
-                        {
-                            case 'i':
-                                currentState = State.Y;
-                                break;
-                            default:
-                                currentState = State.STOP;
-                                break;
-                        }
+                        currentState =
+                            (currentChar == ' ') ? State.Y :
+                            State.STOP;
                         break;
                     case State.Y:
-                        switch (currentChar)
-                        {
-                            case 't':
-                                currentState = State.Z;
-                                break;
-                            default:
-                                currentState = State.STOP;
-                                break;
-                        }
+                        currentState =
+                            (currentChar == 'd') ? State.Z :
+                            State.STOP;
                         break;
                     case State.Z:
+                        currentState =
+                            (currentChar == 'o') ? State.AA :
+                            State.STOP;
+                        break;
+                    case State.AA:
+                        currentState =
+                            (currentChar == '?') ? State.AB :
+                            State.STOP;
+                        break;
+                    case State.AB:
                         currentState = State.STOP;
                         break;
                     default:
@@ -290,20 +170,21 @@
             string responseString = string.Empty;
             switch (currentState)
             {
-                case State.C:
-                    responseString = "Hello";
-                    break;
-                case State.H:
-                    responseString = "Let's ride buckaroo!";
-                    break;
-                case State.P:
-                    responseString = "Fine, and you?";
-                    break;
-                case State.V:
-                    responseString = "Who do you think you are, Santa?";
-                    break;
-                case State.Z:
+                case State.E:
                     responseString = "Bye!";
+                    break;
+                case State.J:
+                    responseString = "Hi";
+                    break;
+                case State.K:
+                case State.N:
+                    responseString = "You must be quite the jolly person";
+                    break;
+                case State.Q:
+                    responseString = "Let's Ride!";
+                    break;
+                case State.AB:
+                    responseString = "I do fine, and you?";
                     break;
                 default:
                     responseString = "Tell me about yourself";
