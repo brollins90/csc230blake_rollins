@@ -1,8 +1,9 @@
 ﻿namespace ChatterBox
 {
+    using System;
     using System.Collections;
     using System.Collections.Generic;
-
+    using B.Parser;
 
     public class ChatterBox : IChatterBox
     {
@@ -193,5 +194,9 @@
             return responseString;
         }
 
+        public string ProcessParseTree(ParseTree tree)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
