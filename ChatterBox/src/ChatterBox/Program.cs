@@ -6,7 +6,7 @@
     {
         public void Main(string[] args)
         {
-            IChatterBox box = new ChatterBox();
+            IChatterBox box = new LR1Parser();
             bool running = true;
             while (running)
             {
@@ -15,9 +15,17 @@
                 Console.WriteLine(processed);
                 if (processed.Contains("Bye")) running = false;
             }
-            //Console.WriteLine(box.ProcessString("How are you?"));
+            Console.WriteLine(box.ProcessString("How are you?"));
 
             // "Bye!"
+
+            //var input = Console.ReadLine();
+            //var symb = new Symbolizer(input);
+            //while (symb.MoveNext())
+            //{
+            //    Console.WriteLine(symb.Current());
+            //}
+
 
         }
     }
