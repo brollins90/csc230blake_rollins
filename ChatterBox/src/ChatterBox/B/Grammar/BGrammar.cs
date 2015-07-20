@@ -1,4 +1,4 @@
-﻿namespace ChatterBox.B.Grammer
+﻿namespace ChatterBox.B.Grammar
 {
     public enum B
     {
@@ -8,6 +8,7 @@
         Article,
         Noun,
         Verb,
-        Preposition
+        Preposition,
+        Pronoun
     }
 }

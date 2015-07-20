@@ -1,10 +1,11 @@
 ﻿namespace ChatterBox
 {
-    using global::ChatterBox.B.Parser;
+    using B.Parser;
 
     public interface IChatterBox
     {
-        string ProcessString(string s);
+        void Go();
+        ParseTree ProcessString(string input);
         string ProcessParseTree(ParseTree tree);
     }
 }

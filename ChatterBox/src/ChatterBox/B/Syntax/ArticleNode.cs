@@ -2,8 +2,11 @@
 {
     using Parser;
 
-    public class ArticleNode : ParserNode
+    public class ArticleNode : TerminalNode
     {
-        public ArticleNode(string text) : base(text) { }
+        public ArticleNode(string text)
+            : base(Grammar.B.Article, text)
+        {
+        }
     }
 }

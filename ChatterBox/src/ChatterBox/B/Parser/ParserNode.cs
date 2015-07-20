@@ -2,11 +2,12 @@
 {
     public abstract class ParserNode
     {
-        public string Text { get; private set; }
+        public Grammar.B Type { get; set; }
+        public virtual string Text { get; }
 
-        public ParserNode(string text)
+        public ParserNode(Grammar.B type)
         {
-            Text = text;
+            Type = type;
         }
 
         public override string ToString() => Text;

@@ -2,22 +2,11 @@
 {
     using Parser;
 
-    public class VerbPhraseNode : ParserNode
+    public class VerbPhraseNode : ColNode
     {
-        public VerbNode Verb { get; set; }
-        public NounPhraseNode NounPhrase { get; set; }
-
-        public VerbPhraseNode(VerbNode verb)
-            : base($"{verb.Text}")
+        public VerbPhraseNode(params ParserNode[] children)
+            : base(Grammar.B.VerbPhrase, children)
         {
-            Verb = verb;
-        }
-
-        public VerbPhraseNode(VerbNode verb, NounPhraseNode nounPhrase)
-            : base($"{verb.Text} {nounPhrase.Text}")
-        {
-            Verb = verb;
-            NounPhrase = nounPhrase;
         }
     }
 }

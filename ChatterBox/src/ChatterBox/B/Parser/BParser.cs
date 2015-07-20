@@ -1,8 +1,7 @@
 ﻿namespace ChatterBox.B.Parser
 {
     using Extensions;
-    using global::ChatterBox.B.Syntax;
-    using Grammer;
+    using Syntax;
     using System.Collections.Generic;
 
     public class BParser : IParser
@@ -45,7 +44,7 @@
             {
                 _internalStack.DoPush(t4);
                 _internalStack.DoPush(t3);
-                _internalStack.DoPush(new SentenceNode(nounPhrase: t2 as NounPhraseNode, verbPhrase: t1 as VerbPhraseNode));
+                _internalStack.DoPush(new SentenceNode(t2 as NounPhraseNode, t1 as VerbPhraseNode));
                 reduced = true;
             }
 
@@ -56,7 +55,7 @@
             {
                 _internalStack.DoPush(t4);
                 _internalStack.DoPush(t3);
-                _internalStack.DoPush(new NounPhraseNode(article: t2 as ArticleNode, noun: t1 as NounNode));
+                _internalStack.DoPush(new NounPhraseNode(t2 as ArticleNode, t1 as NounNode));
                 reduced = true;
             }
 
@@ -66,7 +65,7 @@
                 && t3 is ArticleNode)
             {
                 _internalStack.DoPush(t4);
-                _internalStack.DoPush(new NounPhraseNode(article: t3 as ArticleNode, noun: t2 as NounNode, preposition: t1 as PrepositionNode));
+                _internalStack.DoPush(new NounPhraseNode(t3 as ArticleNode, t2 as NounNode, t1 as PrepositionNode));
                 reduced = true;
             }
 
@@ -76,7 +75,7 @@
             {
                 _internalStack.DoPush(t4);
                 _internalStack.DoPush(t3);
-                _internalStack.DoPush(new VerbPhraseNode(verb: t2 as VerbNode, nounPhrase: t1 as NounPhraseNode));
+                _internalStack.DoPush(new VerbPhraseNode(t2 as VerbNode, t1 as NounPhraseNode));
                 reduced = true;
             }
 
@@ -94,7 +93,7 @@
                 _internalStack.DoPush(t4);
                 _internalStack.DoPush(t3);
                 _internalStack.DoPush(t2);
-                _internalStack.DoPush(new VerbPhraseNode(verb: t1 as VerbNode));
+                _internalStack.DoPush(new VerbPhraseNode(t1 as VerbNode));
                 reduced = true;
             }
 
@@ -106,48 +105,6 @@
             //    stack.DoPush(G.VerbPhrase.ToString().ToLowerInvariant());
             //    reduced = true;
             //}
-
-            // Atricle -> "a" | "the"
-            //else if (t1.ToLowerInvariant().Equals("a".ToLowerInvariant())
-            //    || t1.ToLowerInvariant().Equals("the".ToLowerInvariant()))
-            //{
-            //    _internalStack.DoPush(t3.ToLowerInvariant());
-            //    _internalStack.DoPush(t2.ToLowerInvariant());
-            //    _internalStack.DoPush(B.Article.ToString().ToLowerInvariant());
-            //    reduced = true;
-            //}
-
-            //// Noun -> "dog" | "cat" | "fish"
-            //else if (t1.ToLowerInvariant().Equals("dog".ToLowerInvariant())
-            //    || t1.ToLowerInvariant().Equals("cat".ToLowerInvariant())
-            //    || t1.ToLowerInvariant().Equals("fish".ToLowerInvariant()))
-            //{
-            //    _internalStack.DoPush(t3.ToLowerInvariant());
-            //    _internalStack.DoPush(t2.ToLowerInvariant());
-            //    _internalStack.DoPush(B.Noun.ToString().ToLowerInvariant());
-            //    reduced = true;
-            //}
-
-            //// Verb -> "bites" | "chases"
-            //else if (t1.ToLowerInvariant().Equals("bites".ToLowerInvariant())
-            //    || t1.ToLowerInvariant().Equals("chases".ToLowerInvariant()))
-            //{
-            //    _internalStack.DoPush(t3.ToLowerInvariant());
-            //    _internalStack.DoPush(t2.ToLowerInvariant());
-            //    _internalStack.DoPush(B.Verb.ToString().ToLowerInvariant());
-            //    reduced = true;
-            //}
-
-            //// Preposition -> "with"
-            //else if (t1.ToLowerInvariant().Equals(B.NounPhrase.ToString().ToLowerInvariant())
-            //    && t2.ToLowerInvariant().Equals("with".ToLowerInvariant()))
-            //{
-            //    _internalStack.DoPush(t3.ToLowerInvariant());
-            //    _internalStack.DoPush(B.Preposition.ToString().ToLowerInvariant());
-            //    reduced = true;
-            //}
-
-
 
             else
             {

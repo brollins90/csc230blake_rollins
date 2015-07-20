@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-
-namespace ChatterBox
+﻿namespace ChatterBox
 {
+    using System.Collections;
+    using System.Collections.Generic;
+
     public class Symbolizer : ISymbolizer
     {
         List<string> _stringList;

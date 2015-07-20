@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace ChatterBox
+﻿namespace ChatterBox
 {
+    using System.Collections.Generic;
+
     public interface ISymbolizer : IEnumerator<string>
     {
-        //string GetNext();
         string LookAhead();
     }
 }

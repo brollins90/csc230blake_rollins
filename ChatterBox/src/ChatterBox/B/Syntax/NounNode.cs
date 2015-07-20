@@ -1,9 +1,10 @@
 ﻿namespace ChatterBox.B.Syntax
 {
-    using Parser;
-
-    public class NounNode : ParserNode
+    public class NounNode : TerminalNode
     {
-        public NounNode(string text) : base(text) { }
+        public NounNode(string text)
+            : base(Grammar.B.Noun, text)
+        {
+        }
     }
 }

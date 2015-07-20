@@ -1,7 +1,7 @@
 ﻿namespace ChatterBox.B.Extensions
 {
-    using global::ChatterBox.B.Parser;
-    using global::ChatterBox.B.Syntax;
+    using Parser;
+    using Syntax;
     using System.Collections.Generic;
 
     public static class StackExtensions
