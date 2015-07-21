@@ -2,7 +2,7 @@
 {
     using Parser;
 
-    public class BSyntaxFactory : ISyntaxFactory
+    public class BTerminalFactory : ITerminalFactory
     {
         public ParserNode CreateNode(string input)
         {
@@ -33,6 +33,10 @@
             else if (input.ToLowerInvariant().Equals("chases"))
             {
                 return new VerbNode(input);
+            }
+            else if (input.ToLowerInvariant().Equals("exit"))
+            {
+                return new TerminalNode(Grammar.B.Exit, input);
             }
             return null;
         }

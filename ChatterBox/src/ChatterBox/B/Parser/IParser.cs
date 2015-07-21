@@ -2,6 +2,6 @@
 {
     public interface IParser
     {
-        ParseTree ProcessString(string input);
+        ParseTree ParseStringToTree(string input);
     }
 }

@@ -9,6 +9,7 @@
         Noun,
         Verb,
         Preposition,
-        Pronoun
+        Pronoun,
+        Exit
     }
 }

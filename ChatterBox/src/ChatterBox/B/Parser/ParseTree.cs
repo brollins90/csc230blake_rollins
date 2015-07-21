@@ -1,11 +1,12 @@
 ﻿namespace ChatterBox.B.Parser
 {
-    using Syntax;
-
     public class ParseTree
     {
         public ParserNode HeadNode { get; set; }
 
-        public bool IsValid() => typeof(SentenceNode) == HeadNode?.GetType();
+        public bool IsValid() => (HeadNode.Type == Grammar.B.Sentence);
+        public bool IsExit() => (HeadNode.Type == Grammar.B.Exit);
+
+        public override string ToString() => HeadNode?.Text ?? "";
     }
 }

@@ -6,10 +6,11 @@
 
     public class BParser : IParser
     {
+        
         private Stack<ParserNode> _internalStack = new Stack<ParserNode>();
         private ISymbolizer symbolizer;
 
-        public ParseTree ProcessString(string input)
+        public ParseTree ParseStringToTree(string input)
         {
             symbolizer = new Symbolizer(input);
             ParseTree tree = new ParseTree();

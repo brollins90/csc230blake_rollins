@@ -25,7 +25,7 @@
 
         public static void DoPush(this Stack<ParserNode> i, string s)
         {
-            ISyntaxFactory factory = new BSyntaxFactory();
+            ITerminalFactory factory = new BTerminalFactory();
 
             if (!string.IsNullOrWhiteSpace(s))
             {

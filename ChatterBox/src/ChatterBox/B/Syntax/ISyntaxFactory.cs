@@ -2,7 +2,7 @@
 {
     using Parser;
 
-    public interface ISyntaxFactory
+    public interface ITerminalFactory
     {
         ParserNode CreateNode(string input);
     }

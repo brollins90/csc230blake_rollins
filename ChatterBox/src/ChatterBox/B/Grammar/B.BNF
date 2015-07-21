@@ -1,0 +1,10 @@
+﻿Sentence : Statement | Question | Exit
+Statement : NounPhrase VerbPhrase
+NounPhrase : Article Noun | Article Noun Preposition NounPhrase
+VerbPhrase : Verb | Verb NounPhrase
+Article : "a" | "the"
+Noun : "dog" | "cat" | "fish"
+Verb : "bites" | "chases"
+Preposition : "with"
+Pronoun : "i" | "you" | "he" | "she"
+Exit: "exit"

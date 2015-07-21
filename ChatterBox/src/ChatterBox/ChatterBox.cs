@@ -2,24 +2,47 @@
 {
     using System;
     using B.Parser;
+    using System.Diagnostics;
 
     public class ChatterBox : IChatterBox
     {
+        /// <summary>
+        /// 
+        /// Main loop 
+        /// </summary>
         public void Go()
         {
-
-
             bool running = true;
-            while (running)
-            {
-                var input = Console.ReadLine();
+            string botResponse = "Tell me something about yourself?";
 
+            do
+            {
+                // Ask
+                Ask(botResponse);
+                // Receive
+                string input = Receive();
+                // make a tree
                 var tree = ProcessString(input);
                 Console.WriteLine(tree);
+                
+                if (tree.ToString().ToLowerInvariant().Equals("exit"))
+                {
+                    running = false;
+                    Console.WriteLine("Bye!");
+                }
 
-                var response = ProcessParseTree(tree);
-                Console.WriteLine(response);
-            }
+                botResponse = ProcessParseTree(tree);                
+            } while (running) ;
+        }
+
+        private void Ask(string s)
+        {
+            Console.WriteLine(s);
+        }
+
+        private string Receive()
+        {
+            return Console.ReadLine();
         }
 
         public string ProcessParseTree(ParseTree tree)
@@ -31,8 +54,7 @@
 
         public ParseTree ProcessString(string input)
         {
-            var parser = new BParser();
-            return parser.ProcessString(input);
+            return new BParser().ParseStringToTree(input);
         }
     }
 }
