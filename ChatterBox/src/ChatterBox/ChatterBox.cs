@@ -24,14 +24,11 @@
                 // make a tree
                 var tree = ProcessString(input);
                 Console.WriteLine(tree);
-                
-                if (tree.ToString().ToLowerInvariant().Equals("exit"))
-                {
-                    running = false;
-                    Console.WriteLine("Bye!");
-                }
+                // read the tree
+                botResponse = ProcessParseTree(tree);
 
-                botResponse = ProcessParseTree(tree);                
+                if (tree.IsExit()) { running = false; }
+
             } while (running) ;
         }
 

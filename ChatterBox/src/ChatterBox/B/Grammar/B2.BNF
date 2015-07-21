@@ -1,0 +1,12 @@
+﻿Sentence : Statement | Question | Exit | LikeStatement
+LikeStatement : Pronoun Like Verb
+Statement : NounPhrase VerbPhrase
+NounPhrase : Article Noun | Article Noun Preposition NounPhrase
+VerbPhrase : Verb | Verb NounPhrase
+Article : "a" | "the"
+Noun : "dog" | "cat" | "fish"
+Verb : "bite" | "bites" | "chase" | "chases" | "eat" | "ski"
+Preposition : "with"
+Pronoun : "i" | "you" | "he" | "she"
+Like : "like" | "likes" | Like "to"
+Exit: "exit"
