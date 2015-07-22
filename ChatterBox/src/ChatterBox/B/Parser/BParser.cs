@@ -14,8 +14,7 @@
         public ParseTree ParseStringToTree(string input)
         {
             symbolizer = new Symbolizer(input);
-            ParseTree tree = new ParseTree();
-
+            
             while (symbolizer.MoveNext())
             {
                 string current = symbolizer.Current;
@@ -25,7 +24,7 @@
                 while (Reduce()) { }
             }
 
-            tree = new ParseTree { HeadNode = _internalStack.DoPop() };
+            ParseTree tree = new ParseTree { HackingStack = _internalStack };
             return tree;
         }
 

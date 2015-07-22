@@ -1,14 +1,22 @@
 ﻿namespace ChatterBox.B.Parser
 {
     using Grammar;
+    using System.Collections.Generic;
 
     public class ParseTree
     {
-        public ParserNode HeadNode { get; set; }
+        public Stack<ParserNode> HackingStack { get; set; }
+        public ParserNode HeadNode
+        {
+            get
+            {
+                return (HackingStack.Count > 0) ? HackingStack.Peek() : null;
+            }
+        }
 
-        public bool IsValid() => HeadNode.Compare.Equals(new BGrammar().First());
-        public bool IsExit() => HeadNode.Compare.Equals(new BGrammar().Last());
+        public bool IsValid() => HeadNode.Compare.Equals(new BGrammar().First().Compare);
+        public bool IsExit() => HeadNode.Compare.Equals(new BGrammar().Last().Compare);
 
-        public override string ToString() => HeadNode?.Text ?? "";
+        public override string ToString() => $"{string.Join(" ", HackingStack)}"; //HeadNode?.Text ?? "";
     }
 }

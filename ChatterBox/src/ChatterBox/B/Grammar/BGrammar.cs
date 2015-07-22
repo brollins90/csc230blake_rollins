@@ -24,13 +24,13 @@
                 new GrammarMatcher(GrammarVariable.Get("NOUNPHRASE"), GrammarVariable.Get("VERBPHRASE"))));
 
             Productions.Add(new Production(GrammarVariable.Get("NOUNPHRASE"),
-                new GrammarMatcher(GrammarVariable.Get("ARTICLE"), GrammarVariable.Get("NOUN")) {Lookahead = "with", LookaheadBool = false }));
+                new GrammarMatcher(GrammarVariable.Get("ARTICLE"), GrammarVariable.Get("NOUN")) { Lookahead = "with", LookaheadBool = false }));
 
             Productions.Add(new Production(GrammarVariable.Get("NOUNPHRASE"),
                 new GrammarMatcher(GrammarVariable.Get("ARTICLE"), GrammarVariable.Get("NOUN"), GrammarVariable.Get("PREPOSITION"), GrammarVariable.Get("NOUNPHRASE"))));
 
             Productions.Add(new Production(GrammarVariable.Get("VERBPHRASE"),
-                new GrammarMatcher(GrammarVariable.Get("VERB"))));
+                new GrammarMatcher(GrammarVariable.Get("VERB")) { Lookahead = string.Empty, LookaheadBool = true }));
 
             Productions.Add(new Production(GrammarVariable.Get("VERBPHRASE"),
                 new GrammarMatcher(GrammarVariable.Get("VERB"), GrammarVariable.Get("NOUNPHRASE"))));
@@ -73,6 +73,12 @@
 
             Productions.Add(new Production(GrammarVariable.Get("EXIT"),
                 new GrammarMatcher(new GrammarTerminal("exit"))));
+
+            Productions.Add(new Production(GrammarVariable.Get("EXIT"),
+                new GrammarMatcher(new GrammarTerminal("bye"))));
+
+            Productions.Add(new Production(GrammarVariable.Get("EXIT"),
+                new GrammarMatcher(new GrammarTerminal("goodbye"))));
         }
     }
 }

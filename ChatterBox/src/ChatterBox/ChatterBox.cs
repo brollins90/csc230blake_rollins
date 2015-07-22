@@ -6,6 +6,8 @@
 
     public class ChatterBox : IChatterBox
     {
+        const string NeutralResponse = "Tell me something about yourself?";
+
         /// <summary>
         /// 
         /// Main loop 
@@ -13,7 +15,7 @@
         public void Go()
         {
             bool running = true;
-            string botResponse = "Tell me something about yourself?";
+            string botResponse = NeutralResponse;
 
             do
             {
@@ -29,7 +31,7 @@
 
                 if (tree.IsExit()) { running = false; }
 
-            } while (running) ;
+            } while (running);
         }
 
         private void Ask(string s)
@@ -44,9 +46,11 @@
 
         public string ProcessParseTree(ParseTree tree)
         {
-            Console.WriteLine(tree);
+            // only continue if the tree is a valid sentence
+            if (!tree.IsValid()) { return NeutralResponse; }
 
-            return "";
+
+            return "Yay a good one";
         }
 
         public ParseTree ProcessString(string input)
