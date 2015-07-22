@@ -1,70 +1,78 @@
-﻿using System.Collections.Generic;
-
-namespace ChatterBox.B.Grammar
+﻿namespace ChatterBox.B.Grammar
 {
-    public enum B
-    {
-        Sentence,
-        NounPhrase,
-        VerbPhrase,
-        Article,
-        Noun,
-        Verb,
-        Preposition,
-        Pronoun,
-        Exit
-    }
+    using System.Collections.Generic;
+    using System.Linq;
 
     public class BGrammar
     {
-        Dictionary<string, List<List<string>>> _dict;
-        public Dictionary<string, List<List<string>>> Dict { get { return _dict; } }
+        public List<Production> Productions { get; } = new List<Production>();
+        public GrammarVariable First() => Productions.FirstOrDefault()?.Variable;
+        public GrammarVariable Last() => Productions.LastOrDefault()?.Variable;
 
         public BGrammar()
         {
-            _dict = new Dictionary<string, List<List<string>>>
-            {
-                { "SENTENCE", new List<List<string>>
-                    { new List<string> { "STATEMENT" },
-                      new List<string> { "LIKESTATEMENT" } } },
-                { "LIKESTATEMENT", new List<List<string>>
-                    { new List<string> { "PRONOUN", "LIKE", "VERB" } } },
-                { "STATEMENT", new List<List<string>>
-                    { new List<string> { "NOUNPHRASE", "VERBPHRASE" } } },
-                { "NOUNPHRASE", new List<List<string>>
-                    { new List<string> { "ARTICLE", "NOUN" },
-                      new List<string> { "ARTICLE", "NOUN", "PREPOSITION", "NOUNPHRASE" } } },
-                { "VERBPHRASE", new List<List<string>>
-                    { new List<string> { "VERB" },
-                      new List<string> { "VERB", "NOUNPHRASE" } } },
-                { "ARTICLE", new List<List<string>>
-                    { new List<string> { "a" },
-                      new List<string> { "the" } } },
-                { "NOUN", new List<List<string>>
-                    { new List<string> { "dog" },
-                      new List<string> { "cat" },
-                      new List<string> { "fish" } } },
-                { "VERB", new List<List<string>>
-                    { new List<string> { "bite" },
-                      new List<string> { "bites" },
-                      new List<string> { "chase" },
-                      new List<string> { "chases" },
-                      new List<string> { "eat" },
-                      new List<string> { "ski" } } },
-                { "PREPOSITION", new List<List<string>>
-                    { new List<string> { "with" } } },
-                { "PRONOUN", new List<List<string>>
-                    { new List<string> { "i" },
-                      new List<string> { "you" },
-                      new List<string> { "he" },
-                      new List<string> { "she" } } },
-                { "LIKE", new List<List<string>>
-                    { new List<string> { "like" },
-                      new List<string> { "likes" },
-                      new List<string> { "LIKE", "to" } } },
-                { "EXIT", new List<List<string>>
-                    { new List<string> { "exit" } } }
-            };
+            Productions.Add(new Production(GrammarVariable.Get("SENTENCE"),
+                new GrammarMatcher(GrammarVariable.Get("STATEMENT"))));
+
+            Productions.Add(new Production(GrammarVariable.Get("SENTENCE"),
+                new GrammarMatcher(GrammarVariable.Get("LIKESTATEMENT"))));
+
+            Productions.Add(new Production(GrammarVariable.Get("LIKESTATEMENT"),
+                new GrammarMatcher(GrammarVariable.Get("PRONOUN"), GrammarVariable.Get("LIKE"), GrammarVariable.Get("VERB"))));
+
+            Productions.Add(new Production(GrammarVariable.Get("STATEMENT"),
+                new GrammarMatcher(GrammarVariable.Get("NOUNPHRASE"), GrammarVariable.Get("VERBPHRASE"))));
+
+            Productions.Add(new Production(GrammarVariable.Get("NOUNPHRASE"),
+                new GrammarMatcher(GrammarVariable.Get("ARTICLE"), GrammarVariable.Get("NOUN")) {Lookahead = "with", LookaheadBool = false }));
+
+            Productions.Add(new Production(GrammarVariable.Get("NOUNPHRASE"),
+                new GrammarMatcher(GrammarVariable.Get("ARTICLE"), GrammarVariable.Get("NOUN"), GrammarVariable.Get("PREPOSITION"), GrammarVariable.Get("NOUNPHRASE"))));
+
+            Productions.Add(new Production(GrammarVariable.Get("VERBPHRASE"),
+                new GrammarMatcher(GrammarVariable.Get("VERB"))));
+
+            Productions.Add(new Production(GrammarVariable.Get("VERBPHRASE"),
+                new GrammarMatcher(GrammarVariable.Get("VERB"), GrammarVariable.Get("NOUNPHRASE"))));
+
+            Productions.Add(new Production(GrammarVariable.Get("ARTICLE"),
+                new GrammarMatcher(new GrammarTerminal("a"))));
+
+            Productions.Add(new Production(GrammarVariable.Get("ARTICLE"),
+                new GrammarMatcher(new GrammarTerminal("the"))));
+
+            Productions.Add(new Production(GrammarVariable.Get("NOUN"),
+                new GrammarMatcher(new GrammarTerminal("cat"))));
+
+            Productions.Add(new Production(GrammarVariable.Get("NOUN"),
+                new GrammarMatcher(new GrammarTerminal("dog"))));
+
+            Productions.Add(new Production(GrammarVariable.Get("NOUN"),
+                new GrammarMatcher(new GrammarTerminal("fish"))));
+
+            Productions.Add(new Production(GrammarVariable.Get("VERB"),
+                new GrammarMatcher(new GrammarTerminal("bites"))));
+
+            Productions.Add(new Production(GrammarVariable.Get("VERB"),
+                new GrammarMatcher(new GrammarTerminal("chases"))));
+
+            Productions.Add(new Production(GrammarVariable.Get("PREPOSITION"),
+                new GrammarMatcher(new GrammarTerminal("with"))));
+
+            Productions.Add(new Production(GrammarVariable.Get("PRONOUN"),
+                new GrammarMatcher(new GrammarTerminal("i"))));
+
+            Productions.Add(new Production(GrammarVariable.Get("PRONOUN"),
+                new GrammarMatcher(new GrammarTerminal("you"))));
+
+            Productions.Add(new Production(GrammarVariable.Get("PRONOUN"),
+                new GrammarMatcher(new GrammarTerminal("he"))));
+
+            Productions.Add(new Production(GrammarVariable.Get("PRONOUN"),
+                new GrammarMatcher(new GrammarTerminal("she"))));
+
+            Productions.Add(new Production(GrammarVariable.Get("EXIT"),
+                new GrammarMatcher(new GrammarTerminal("exit"))));
         }
     }
 }

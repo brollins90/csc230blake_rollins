@@ -2,10 +2,11 @@
 {
     public abstract class ParserNode
     {
-        public Grammar.B Type { get; set; }
-        public virtual string Text { get; }
+        public virtual string Type { get; set; }
+        public virtual string Text { get; set; }
+        public virtual string Compare { get { return Type.ToLowerInvariant(); } }
 
-        public ParserNode(Grammar.B type)
+        public ParserNode(string type)
         {
             Type = type;
         }

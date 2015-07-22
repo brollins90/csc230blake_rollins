@@ -1,9 +1,9 @@
-﻿namespace ChatterBox.B.Syntax
-{
-    using Parser;
+﻿//namespace ChatterBox.B.Syntax
+//{
+//    using Parser;
 
-    public interface ITerminalFactory
-    {
-        ParserNode CreateNode(string input);
-    }
-}
+//    public interface ITerminalFactory
+//    {
+//        ParserNode CreateNode(string input, params ParserNode[] children);
+//    }
+//}

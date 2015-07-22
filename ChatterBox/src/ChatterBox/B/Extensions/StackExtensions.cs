@@ -1,7 +1,6 @@
 ﻿namespace ChatterBox.B.Extensions
 {
     using Parser;
-    using Syntax;
     using System.Collections.Generic;
 
     public static class StackExtensions
@@ -23,14 +22,15 @@
             }
         }
 
-        public static void DoPush(this Stack<ParserNode> i, string s)
-        {
-            ITerminalFactory factory = new BTerminalFactory();
+        //public static void DoPush(this Stack<ParserNode> i, string s)
+        //{
+        //    //ITerminalFactory factory = new BTerminalFactory();
 
-            if (!string.IsNullOrWhiteSpace(s))
-            {
-                i.Push(factory.CreateNode(s));
-            }
-        }
+        //    if (!string.IsNullOrWhiteSpace(s))
+        //    {
+        //        //i.Push(factory.CreateNode(s));
+        //        i.Push(new TerminalNode())
+        //    }
+        //}
     }
 }
