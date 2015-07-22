@@ -3,10 +3,17 @@
     using System;
     using Parser;
     using System.Diagnostics;
+    using Grammar;
 
     public class ChatterBox : IChatterBox
     {
         const string NeutralResponse = "Tell me something about yourself?";
+        private IGrammar _grammar;
+
+        public ChatterBox(IGrammar grammar)
+        {
+            _grammar = grammar;
+        }
 
         /// <summary>
         /// 
@@ -45,6 +52,7 @@
 
         public string ProcessParseTree(ParseTree tree)
         {
+            Console.WriteLine(tree);
             // only continue if the tree is a valid sentence
             if (!tree.IsValid()) { return NeutralResponse; }
 
@@ -54,7 +62,7 @@
 
         public ParseTree ProcessString(string input)
         {
-            return new BParser().ParseStringToTree(input);
+            return new BParser(_grammar).ParseStringToTree(input);
         }
     }
 }

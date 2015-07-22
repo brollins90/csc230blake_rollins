@@ -5,17 +5,18 @@
 
     public class ParseTree
     {
-        public Stack<ParserNode> HackingStack { get; set; }
-        public ParserNode HeadNode
+        private IGrammar _grammarReference;
+
+        public ParseTree(IGrammar grammarReference)
         {
-            get
-            {
-                return (HackingStack.Count > 0) ? HackingStack.Peek() : null;
-            }
+            _grammarReference = grammarReference;
         }
 
-        public bool IsValid() => HeadNode.Compare.Equals(new BGrammar().First().Compare);
-        public bool IsExit() => HeadNode.Compare.Equals(new BGrammar().Last().Compare);
+        public Stack<ParserNode> HackingStack { get; set; }
+        public ParserNode HeadNode => (HackingStack.Count > 0) ? HackingStack.Peek() : null;
+
+        public bool IsValid() => HeadNode.Compare.Equals(_grammarReference.First.Compare);
+        public bool IsExit() => HeadNode.Compare.Equals(_grammarReference.Last.Compare);
 
         public override string ToString() => $"{string.Join("\n", HackingStack)}"; //HeadNode?.Text ?? "";
     }

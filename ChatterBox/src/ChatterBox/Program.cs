@@ -1,10 +1,16 @@
-﻿namespace ChatterBox
+﻿using ChatterBox.Grammar;
+
+namespace ChatterBox
 {
     public class Program
     {
         public void Main(string[] args)
         {
-            var chatterBox = new ChatterBox();
+            var reader = new BFileGrammarReader(@"C:\_\src\School\csc230blake_rollins - Computational Theory\ChatterBox\src\ChatterBox\Grammar\B2.BNF");
+            var grammar = reader.ReadGrammar();
+
+
+            var chatterBox = new ChatterBox(grammar);
             chatterBox.Go();
         }
     }

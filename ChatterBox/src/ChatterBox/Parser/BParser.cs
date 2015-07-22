@@ -6,10 +6,14 @@
 
     public class BParser : IParser
     {
-        private BGrammar _grammar = new BGrammar();
-
         private Stack<ParserNode> _internalStack = new Stack<ParserNode>();
+        private IGrammar _grammar;
         private ITokenizer tokenizer;
+
+        public BParser(IGrammar grammar)
+        {
+            _grammar = grammar;
+        }
 
         public ParseTree ParseStringToTree(string input)
         {
@@ -24,7 +28,7 @@
                 while (Reduce()) { }
             }
 
-            ParseTree tree = new ParseTree { HackingStack = _internalStack };
+            ParseTree tree = new ParseTree(_grammar) { HackingStack = _internalStack };
             return tree;
         }
 
