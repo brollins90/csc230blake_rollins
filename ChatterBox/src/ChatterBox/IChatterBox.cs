@@ -1,6 +1,6 @@
 ﻿namespace ChatterBox
 {
-    using B.Parser;
+    using Parser;
 
     public interface IChatterBox
     {

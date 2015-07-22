@@ -1,4 +1,4 @@
-﻿namespace ChatterBox.B.Extensions
+﻿namespace ChatterBox.Extensions
 {
     using Parser;
     using System.Collections.Generic;
@@ -21,16 +21,5 @@
                 i.Push(s);
             }
         }
-
-        //public static void DoPush(this Stack<ParserNode> i, string s)
-        //{
-        //    //ITerminalFactory factory = new BTerminalFactory();
-
-        //    if (!string.IsNullOrWhiteSpace(s))
-        //    {
-        //        //i.Push(factory.CreateNode(s));
-        //        i.Push(new TerminalNode())
-        //    }
-        //}
     }
 }

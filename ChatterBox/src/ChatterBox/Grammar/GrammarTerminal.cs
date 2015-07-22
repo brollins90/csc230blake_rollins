@@ -1,4 +1,4 @@
-﻿namespace ChatterBox.B.Grammar
+﻿namespace ChatterBox.Grammar
 {
     using Parser;
 

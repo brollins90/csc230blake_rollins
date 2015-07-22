@@ -1,4 +1,4 @@
-﻿namespace ChatterBox.B.Parser
+﻿namespace ChatterBox.Parser
 {
     using Grammar;
     using System.Collections.Generic;
@@ -17,6 +17,6 @@
         public bool IsValid() => HeadNode.Compare.Equals(new BGrammar().First().Compare);
         public bool IsExit() => HeadNode.Compare.Equals(new BGrammar().Last().Compare);
 
-        public override string ToString() => $"{string.Join(" ", HackingStack)}"; //HeadNode?.Text ?? "";
+        public override string ToString() => $"{string.Join("\n", HackingStack)}"; //HeadNode?.Text ?? "";
     }
 }

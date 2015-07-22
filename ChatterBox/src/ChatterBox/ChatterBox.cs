@@ -1,7 +1,7 @@
 ﻿namespace ChatterBox
 {
     using System;
-    using B.Parser;
+    using Parser;
     using System.Diagnostics;
 
     public class ChatterBox : IChatterBox
@@ -20,13 +20,12 @@
             do
             {
                 // Ask
-                Ask(botResponse);
+                AskUser(botResponse);
                 // Receive
                 string input = Receive();
                 // make a tree
                 var tree = ProcessString(input);
-                Console.WriteLine(tree);
-                // read the tree
+                // process the tree
                 botResponse = ProcessParseTree(tree);
 
                 if (tree.IsExit()) { running = false; }
@@ -34,7 +33,7 @@
             } while (running);
         }
 
-        private void Ask(string s)
+        private void AskUser(string s)
         {
             Console.WriteLine(s);
         }

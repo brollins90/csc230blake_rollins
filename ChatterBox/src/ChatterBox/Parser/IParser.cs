@@ -1,4 +1,4 @@
-﻿namespace ChatterBox.B.Parser
+﻿namespace ChatterBox.Parser
 {
     public interface IParser
     {

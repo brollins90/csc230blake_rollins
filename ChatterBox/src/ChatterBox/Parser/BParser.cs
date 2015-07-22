@@ -1,4 +1,4 @@
-﻿namespace ChatterBox.B.Parser
+﻿namespace ChatterBox.Parser
 {
     using Extensions;
     using Grammar;
@@ -9,17 +9,17 @@
         private BGrammar _grammar = new BGrammar();
 
         private Stack<ParserNode> _internalStack = new Stack<ParserNode>();
-        private ISymbolizer symbolizer;
+        private ITokenizer tokenizer;
 
         public ParseTree ParseStringToTree(string input)
         {
-            symbolizer = new Symbolizer(input);
+            tokenizer = new BTokenizer(input);
             
-            while (symbolizer.MoveNext())
+            while (tokenizer.MoveNext())
             {
-                string current = symbolizer.Current;
+                string currentToken = tokenizer.Current;
 
-                _internalStack.DoPush(new TerminalNode(current));
+                _internalStack.DoPush(new TerminalNode(currentToken));
 
                 while (Reduce()) { }
             }
@@ -35,16 +35,13 @@
             for (int i = 0; i < _grammar.Productions.Count && !reduced; i++)
             {
                 var production = _grammar.Productions[i];
-                //System.Console.WriteLine(production);
 
                 var t1 = _internalStack.DoPop();
                 var t2 = _internalStack.DoPop();
                 var t3 = _internalStack.DoPop();
                 var t4 = _internalStack.DoPop();
-                var lookahead = symbolizer.LookAhead();
+                var lookahead = tokenizer.LookAhead();
 
-                //System.Console.WriteLine($"t1:{t1},t2:{t2},t3:{t3},t4:{t4},lookahead:{lookahead}");
-                
                 var symbols = production.Matcher.Symbols;
 
                 if (symbols.Count == 4 && production.Matcher.TryMatch(lookahead, t4, t3, t2, t1))

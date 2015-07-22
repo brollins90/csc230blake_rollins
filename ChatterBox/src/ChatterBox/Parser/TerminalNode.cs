@@ -1,15 +1,15 @@
-﻿namespace ChatterBox.B.Parser
+﻿namespace ChatterBox.Parser
 {
     public class TerminalNode : ParserNode
     {
-        public override string Text { get; set; }
+        public string Text { get; }
 
-        public TerminalNode(string text) 
-            : base("TERMINAL")
+        public TerminalNode(string text)
         {
             Text = text;
         }
 
+        public override string Type => "Terminal";
         public override string Compare => Text.ToLowerInvariant();
     }
 }

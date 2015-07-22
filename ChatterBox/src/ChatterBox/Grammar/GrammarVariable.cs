@@ -1,7 +1,8 @@
-﻿namespace ChatterBox.B.Grammar
+﻿namespace ChatterBox.Grammar
 {
     using Parser;
     using System.Collections.Generic;
+    using System.Diagnostics;
 
     public class GrammarVariable : GrammarSymbol
     {
@@ -27,7 +28,7 @@
 
         public ParserNode ToNode(params ParserNode[] nodes)
         {
-            System.Console.WriteLine($"reduced to {Name} ({string.Join<ParserNode>(", ", nodes)})");
+            //Debug.WriteLine($"reduced to {Name} ({string.Join<ParserNode>(", ", nodes)})");
             return new VariableNode(Name, nodes);
         }
 

@@ -1,15 +1,15 @@
-﻿namespace ChatterBox
+﻿namespace ChatterBox.Parser
 {
     using System.Collections;
     using System.Collections.Generic;
 
-    public class Symbolizer : ISymbolizer
+    public class BTokenizer : ITokenizer
     {
         List<string> _stringList;
         int _index;
 
 
-        public Symbolizer(string input)
+        public BTokenizer(string input)
         {
             string[] s = input.Split(' ');
             _stringList = new List<string>(s);
