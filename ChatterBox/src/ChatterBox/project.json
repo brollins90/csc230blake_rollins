@@ -1,10 +1,7 @@
 {
   "version": "1.0.0-*",
   "description": "",
-  "authors": [ "" ],
-  "tags": [ "" ],
-  "projectUrl": "",
-  "licenseUrl": "",
+  "authors": [ "brollins" ],
 
   "dependencies": {
   },
@@ -14,6 +11,19 @@
   },
 
   "frameworks": {
-    "dnx451": { }
+    "net45": {
+      "frameworkAssemblies": {
+        "System.Runtime": "4.0.0.0"
+      }
+    },
+    "dnx451": { },
+    "dnxcore50": {
+      "dependencies": {
+        "System.Console": "4.0.0-beta-23019",
+        "Microsoft.CSharp": "4.0.0-beta-23019",
+        "System.IO": "4.0.10-beta-23019",
+        "System.IO.FileSystem": "4.0.0-beta-23019"
+      }
+    }
   }
 }

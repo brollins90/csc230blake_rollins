@@ -10,6 +10,7 @@
             Variable = variable;
             Matcher = matcher;
         }
+
         public override string ToString() => $"{Variable} : {Matcher}";
     }
 }

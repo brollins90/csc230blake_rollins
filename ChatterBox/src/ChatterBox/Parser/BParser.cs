@@ -6,7 +6,7 @@
 
     public class BParser : IParser
     {
-        private Stack<ParserNode> _internalStack = new Stack<ParserNode>();
+        private Stack<IParserNode> _internalStack = new Stack<IParserNode>();
         private IGrammar _grammar;
         private ITokenizer tokenizer;
 

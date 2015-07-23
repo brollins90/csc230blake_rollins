@@ -14,12 +14,12 @@ namespace ChatterBox.Grammar
         public BFileGrammarReader(string filename)
         {
             _filename = filename;
-            _streamReader = new StreamReader(_filename);
+            _streamReader = new StreamReader(new FileStream(_filename, FileMode.Open));
         }
 
         ~BFileGrammarReader()
         {
-            _streamReader.Close();
+            _streamReader.Dispose();
         }
 
         public IGrammar ReadGrammar()
@@ -41,12 +41,7 @@ namespace ChatterBox.Grammar
             var productionsFound = new List<Production>();
 
             var colonIndex = line.IndexOf(':');
-            //var lookaheadIndex = line.IndexOf('_');
-            //lookaheadIndex = (lookaheadIndex == -1) ? line.Length : lookaheadIndex;
-
             var lhsLength = colonIndex;
-            //var rhsLength = lookaheadIndex - lhsLength;
-            //var lookaheadLength = line.Length - (lhsLength + rhsLength);
 
             var lhs = line.Substring(0, lhsLength).Trim();
             var rhs = line.Substring(colonIndex + 1).Trim();
@@ -70,17 +65,21 @@ namespace ChatterBox.Grammar
                 {
                     bool isTerminal = word.Contains('\'');
 
-                    GrammarSymbol symbol = (isTerminal)
-                        ? (GrammarSymbol)new GrammarTerminal(word.Trim('\''))
-                        : (GrammarSymbol)GrammarVariable.Get(word.ToUpper());
-
-                    //if (isTerminal && string.IsNullOrWhiteSpace((symbol as GrammarTerminal).Value))
-                    //{
-                    //}
-                    //else
-                    //{
-                        symbols.Add(symbol);
-                    //}
+                    GrammarSymbol symbol;
+                    if (isTerminal)
+                    {
+                        // Trim away the quotes and then lower case it
+                        string finalWord = word.Trim('\'');
+                        finalWord = finalWord.ToLowerInvariant();
+                        symbol = new GrammarTerminal(finalWord);
+                    }
+                    else
+                    {
+                        // uppercase the variables
+                        string finalWord = word.ToUpperInvariant();
+                        symbol = GrammarVariable.Get(finalWord);
+                    }
+                    symbols.Add(symbol);
                 }
 
                 var newProduction = new Production(variable, new GrammarMatcher(symbols.ToArray()));

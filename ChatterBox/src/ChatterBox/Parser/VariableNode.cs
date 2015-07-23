@@ -1,22 +1,22 @@
 ﻿namespace ChatterBox.Parser
 {
     using System.Collections.Generic;
-    using System.Linq;
 
-    public class VariableNode : ParserNode
+    public class VariableNode : IParserNode
     {
-        private Stack<ParserNode> _children;
         private string _type;
 
-        public string Text => $"{string.Join(" ", _children)}";
+        public Stack<IParserNode> Children { get; }
+        public string Compare => Type.ToUpperInvariant();
+        public string Text => $"{string.Join(" ", Children)}";
+        public string Type => _type;
 
-        public VariableNode(string type, params ParserNode[] children)
+        public VariableNode(string type, params IParserNode[] children)
         {
-            _children = new Stack<ParserNode>(children);
             _type = type;
+            Children = new Stack<IParserNode>(children);
         }
 
-        public override string Type => _type;
-        public override string Compare => Type.ToUpperInvariant();
+        public override string ToString() => Text;
     }
 }

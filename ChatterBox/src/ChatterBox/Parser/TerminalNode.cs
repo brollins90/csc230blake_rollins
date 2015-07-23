@@ -1,15 +1,16 @@
 ﻿namespace ChatterBox.Parser
 {
-    public class TerminalNode : ParserNode
+    public class TerminalNode : IParserNode
     {
+        public string Compare => Text.ToLowerInvariant();
         public string Text { get; }
+        public string Type => "Terminal";
 
         public TerminalNode(string text)
         {
             Text = text;
         }
 
-        public override string Type => "Terminal";
-        public override string Compare => Text.ToLowerInvariant();
+        public override string ToString() => Text;
     }
 }

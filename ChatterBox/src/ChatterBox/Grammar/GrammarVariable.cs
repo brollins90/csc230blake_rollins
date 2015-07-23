@@ -26,9 +26,9 @@
         }
         public override string Compare => Name;
 
-        public ParserNode ToNode(params ParserNode[] nodes)
+        public IParserNode ToNode(params IParserNode[] nodes)
         {
-            Debug.WriteLine($"reduced to {Name} ({string.Join<ParserNode>(", ", nodes)})");
+            Debug.WriteLine($"reduced to {Name} ({string.Join<IParserNode>(", ", nodes)})");
             return new VariableNode(Name, nodes);
         }
 
