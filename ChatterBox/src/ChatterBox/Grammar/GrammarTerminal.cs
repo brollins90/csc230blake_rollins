@@ -12,7 +12,7 @@
         }
 
         public override string Compare => Value;
-        public IParserNode ToNode()
+        public ParserNode ToNode()
         {
             return new TerminalNode(Value);
         }

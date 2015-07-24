@@ -2,21 +2,20 @@
 {
     using System.Collections.Generic;
 
-    public class VariableNode : IParserNode
+    public class VariableNode : ParserNode
     {
-        private string _type;
+        public Stack<ParserNode> Children { get; }
 
-        public Stack<IParserNode> Children { get; }
-        public string Compare => Type.ToUpperInvariant();
-        public string Text => $"{string.Join(" ", Children)}";
-        public string Type => _type;
+        // A Variable node is equal if the TYPE is the same
+        public override string Compare => Type.ToUpperInvariant();
+        public override string Type { get; }
 
-        public VariableNode(string type, params IParserNode[] children)
+        public VariableNode(string type, params ParserNode[] children)
         {
-            _type = type;
-            Children = new Stack<IParserNode>(children);
+            Type = type;
+            Children = new Stack<ParserNode>(children);
         }
 
-        public override string ToString() => Text;
+        public override string ToString() => $"{string.Join(" ", Children)}";
     }
 }

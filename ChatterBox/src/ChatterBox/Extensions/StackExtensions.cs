@@ -5,7 +5,7 @@
 
     public static class StackExtensions
     {
-        public static IParserNode DoPop(this Stack<IParserNode> i)
+        public static ParserNode DoPop(this Stack<ParserNode> i)
         {
             if (i.Count > 0)
             {
@@ -14,7 +14,7 @@
             return null;
         }
 
-        public static void DoPush(this Stack<IParserNode> i, IParserNode s)
+        public static void DoPush(this Stack<ParserNode> i, ParserNode s)
         {
             if (s != null)
             {

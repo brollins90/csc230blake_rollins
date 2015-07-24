@@ -15,7 +15,7 @@
             Symbols = new List<GrammarSymbol>(symbols);
         }
 
-        public bool TryMatch(string lookahead, params IParserNode[] nodes)
+        public bool TryMatch(string lookahead, params ParserNode[] nodes)
         {
             nodes = nodes.Where(x => x != null).ToArray();
             bool result = false;
@@ -25,7 +25,7 @@
                 result = true;
                 for (int i = 0; i < Symbols.Count && result; i++)
                 {
-                    if (!Symbols[i].Compare.Equals(nodes[i].Compare))
+                    if (!Symbols[i].Equals(nodes[i]))
                     {
                         result = false;
                     }

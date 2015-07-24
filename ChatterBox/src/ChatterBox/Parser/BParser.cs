@@ -6,7 +6,7 @@
 
     public class BParser : IParser
     {
-        private Stack<IParserNode> _internalStack = new Stack<IParserNode>();
+        private Stack<ParserNode> _internalStack = new Stack<ParserNode>();
         private IGrammar _grammar;
         private ITokenizer tokenizer;
 
@@ -28,7 +28,7 @@
                 while (Reduce()) { }
             }
 
-            ParseTree tree = new ParseTree(_grammar) { HackingStack = _internalStack };
+            ParseTree tree = new ParseTree(_grammar, _internalStack);
             return tree;
         }
 

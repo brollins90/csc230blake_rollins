@@ -1,16 +1,20 @@
-﻿namespace ChatterBox.Parser
+﻿using System.Diagnostics;
+
+namespace ChatterBox.Parser
 {
-    public class TerminalNode : IParserNode
+    public class TerminalNode : ParserNode
     {
-        public string Compare => Text.ToLowerInvariant();
-        public string Text { get; }
-        public string Type => "Terminal";
+        private string _text;
+
+        public override string Compare => _text.ToLowerInvariant();
+        public override string Type => "Terminal";
 
         public TerminalNode(string text)
         {
-            Text = text;
+            Debug.WriteLine($"created  TERMINAL ({text})");
+            _text = text;
         }
 
-        public override string ToString() => Text;
+        public override string ToString() => _text;
     }
 }
