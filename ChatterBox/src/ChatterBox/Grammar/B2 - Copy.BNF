@@ -1,0 +1,15 @@
+﻿Sentence : Statement | Question | LikeStatement
+Statement : NounPhrase VerbPhrase
+NounPhrase : Article Noun _!'with' | Article Noun Preposition NounPhrase
+VerbPhrase : Verb _'' | Verb NounPhrase
+LikeStatement : Pronoun Like VerbPhrase
+Article : 'a' | 'the'
+Noun : 'dog' | 'cat' | 'fish'
+Verb : 'bite' | 'bites' | 'chase' | 'chases' | 'eat' | 'ski'
+Preposition : 'with' | 'with'
+Pronoun : 'i' | 'you' | 'he' | 'she' |'it' | 'ours' | 'them'
+Like : 'like' | 'likes' | Like 'to'
+City : 'New York' | 'Los Angeles' | 'Chicago' | 'Houston' | 'Philadelphia' | 'Phoenix' | 'San Antonio' | 'San Diego' | 'Dallas' | 'San Jose'
+DistanceStatement : 'A' Number 'mile road connects' City 'to' City
+Number : '1690'
+Exit: 'exit' | 'bye' | 'goodbye' | 'good-bye'

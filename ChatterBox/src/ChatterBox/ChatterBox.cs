@@ -141,7 +141,7 @@
             //ProcessParseTree(ProcessString("A 1358 mile road connects San Diego to Dallas"));
             //ProcessParseTree(ProcessString("A 459 mile road connects San Diego to San Jose"));
 
-            ProcessParseTree(ProcessString("A 1690 mile road connects Dallas to San Jose"));
+            ProcessParseTree(ProcessString("A 1690 mile Dallas to San Jose"));
         }
     }
 }

@@ -15,17 +15,20 @@
             Symbols = new List<GrammarSymbol>(symbols);
         }
 
-        public bool TryMatch(string lookahead, params ParserNode[] nodes)
+        public bool TryMatch(string lookahead, Stack<ParserNode> nodes)
         {
-            nodes = nodes.Where(x => x != null).ToArray();
+            var sArray = Symbols.ToArray().Reverse().ToArray();
             bool result = false;
-            if (Symbols.Count == nodes.Count())
+            if (nodes.Count() >= Symbols.Count)
             {
                 // set to true until something fails
                 result = true;
-                for (int i = 0; i < Symbols.Count && result; i++)
+                var tArray = new ParserNode[Symbols.Count];
+                for (int i = 0; i < Symbols.Count; i++)
                 {
-                    if (!Symbols[i].Equals(nodes[i]))
+                    tArray[i] = nodes.Pop();
+
+                    if (!sArray[i].Equals(tArray[i]))
                     {
                         result = false;
                     }
@@ -37,6 +40,19 @@
                     var doesLookaheadMatch = Lookahead.Equals(lookahead);
                     result = doesLookaheadMatch == LookaheadBool;
                 }
+
+                //if (!result)
+                //{
+                    tArray = tArray.Reverse().ToArray();
+                    foreach (var n in tArray)
+                    {
+                        nodes.Push(n);
+                    }
+                //}
+                //else
+                //{
+
+                //}
             }
             return result;
         }
