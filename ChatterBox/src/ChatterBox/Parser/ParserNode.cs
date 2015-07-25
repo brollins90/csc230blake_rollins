@@ -1,5 +1,6 @@
 ﻿namespace ChatterBox.Parser
 {
+    using Grammar;
     using System;
 
     public abstract class ParserNode : IEquatable<ParserNode>
@@ -23,6 +24,14 @@
         public override int GetHashCode()
         {
             return base.GetHashCode();
+        }
+
+
+        // Ugly hack?
+        public bool Equals(GrammarSymbol other)
+        {
+            if ((object)other == null) { return false; }
+            return Compare.Equals(other.Compare);
         }
     }
 }

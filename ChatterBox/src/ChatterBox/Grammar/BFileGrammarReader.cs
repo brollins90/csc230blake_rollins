@@ -63,22 +63,25 @@ namespace ChatterBox.Grammar
 
                 foreach (var word in words)
                 {
+                    //Console.WriteLine(word);
                     bool isTerminal = word.Contains('\'');
 
                     GrammarSymbol symbol;
+                    string finalWord = string.Empty;
                     if (isTerminal)
                     {
                         // Trim away the quotes and then lower case it
-                        string finalWord = word.Trim('\'');
+                        finalWord = word.Trim('\'');
                         finalWord = finalWord.ToLowerInvariant();
                         symbol = new GrammarTerminal(finalWord);
                     }
                     else
                     {
                         // uppercase the variables
-                        string finalWord = word.ToUpperInvariant();
+                        finalWord = word.ToUpperInvariant();
                         symbol = GrammarVariable.Get(finalWord);
                     }
+                    //Console.WriteLine(finalWord);
                     symbols.Add(symbol);
                 }
 
