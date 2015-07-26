@@ -38,6 +38,10 @@ namespace ChatterBox.Grammar
 
         private Production[] ProcessLine(string line)
         {
+            if (string.IsNullOrWhiteSpace(line))
+            {
+                return new Production[0];
+            }
             var productionsFound = new List<Production>();
 
             var colonIndex = line.IndexOf(':');

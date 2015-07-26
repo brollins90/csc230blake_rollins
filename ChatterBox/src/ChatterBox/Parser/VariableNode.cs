@@ -1,5 +1,6 @@
 ﻿namespace ChatterBox.Parser
 {
+    using System;
     using System.Collections.Generic;
 
     public class VariableNode : ParserNode
@@ -18,19 +19,16 @@
 
         public override string ToString() => $"{string.Join(" ", Children)}";
 
-        public override IEnumerable<ParserNode> NodeEnumerator
+        public override IEnumerator<ParserNode> GetEnumerator()
         {
-            get
+            yield return this;
+            if (Children != null)
             {
-                yield return this;
-                if (Children != null)
+                foreach (ParserNode child in Children)
                 {
-                    foreach (ParserNode child in Children)
-                    {
-                        IEnumerator<ParserNode> childEnum = child.NodeEnumerator.GetEnumerator();
-                        while (childEnum.MoveNext())
-                            yield return childEnum.Current;
-                    }
+                    IEnumerator<ParserNode> childEnum = child.GetEnumerator();
+                    while (childEnum.MoveNext())
+                        yield return childEnum.Current;
                 }
             }
         }

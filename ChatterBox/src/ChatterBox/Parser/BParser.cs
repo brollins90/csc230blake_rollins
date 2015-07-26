@@ -18,7 +18,7 @@
             _grammar = grammar;
         }
 
-        public ParseTree ParseStringToTree(string input)
+        public ParserTree ParseStringToTree(string input)
         {
             tokenizer = new BTokenizer(input);
 
@@ -31,7 +31,7 @@
                 while (Reduce()) { }
             }
 
-            ParseTree tree = new ParseTree(_grammar, _internalStack);
+            ParserTree tree = new ParserTree(_grammar, _internalStack);
             return tree;
         }
 

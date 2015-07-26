@@ -3,8 +3,9 @@
     using Grammar;
     using System;
     using System.Collections.Generic;
+    using System.Collections;
 
-    public abstract class ParserNode : IEquatable<ParserNode>
+    public abstract class ParserNode : IEquatable<ParserNode>, IEnumerable<ParserNode>
     {
         public abstract string Compare { get; }
         public abstract string Type { get; }
@@ -35,6 +36,8 @@
             return Compare.Equals(other.Compare);
         }
 
-        public abstract IEnumerable<ParserNode> NodeEnumerator { get; }
+        public abstract IEnumerator<ParserNode> GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }

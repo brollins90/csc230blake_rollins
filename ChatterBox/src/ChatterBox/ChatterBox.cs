@@ -5,16 +5,22 @@
     using System.Diagnostics;
     using Grammar;
     using System.Linq;
+    using Processors;
+    using System.Collections.Generic;
 
     public class ChatterBox : IChatterBox
     {
         const string NeutralResponse = "Tell me something about yourself?";
         private IGrammar _grammar;
-        private int _distances;
+        private List<IProcessor> _processors;
 
         public ChatterBox(IGrammar grammar)
         {
             _grammar = grammar;
+            _processors = new List<IProcessor>();
+
+            _processors.Add(new LikeProcessor());
+            _processors.Add(new DistanceProcessor());
         }
 
         /// <summary>
@@ -53,46 +59,48 @@
             return Console.ReadLine();
         }
 
-        public string ProcessParseTree(ParseTree tree)
+        public string ProcessParseTree(ParserTree tree)
         {
             Console.WriteLine(tree);
+            
             // only continue if the tree is a valid sentence
             if (!tree.IsValid()) { return NeutralResponse; }
 
-            if ((tree.HeadNode as VariableNode).Children.First().Type == "LIKESTATEMENT")
+            string response = string.Empty;
+            bool foundAResponse = false;
+            for(int i = 0; i < _processors.Count && !foundAResponse; i++)
             {
-                string a = $"Do {tree.ToString()} often?";
-                a = a.Replace("I ", "you ");
-                a = a.Replace("i ", "you ");
-                Console.WriteLine(a);
+                if (_processors[i].TryProcess(tree, out response))
+                {
+                    foundAResponse = true;
+                }                
             }
             
-            if ((tree.HeadNode as VariableNode).Children.First().Type == "DISTANCESTATEMENT")
+            if (!foundAResponse)
             {
-                _distances++;
-                Console.WriteLine(_distances);
+                response = NeutralResponse;
             }
 
-            if ((tree.HeadNode as VariableNode).Children.First().Type == "DISTANCEQUESTION")
-            {
-                Console.WriteLine("Good question");
-            }
-            //var t = tree.HeadNode.ToString();
-            //Console.WriteLine(t);
+            return response;
 
 
 
-            return "Yay a good one";
+            ////var t = tree.HeadNode.ToString();
+            ////Console.WriteLine(t);
+
+
+
+            //return "Yay a good one";
         }
 
-        public ParseTree ProcessString(string input)
+        public ParserTree ProcessString(string input)
         {
             return new BParser(_grammar).ParseStringToTree(input);
         }
 
-        public string ConvertLikeTree(ParseTree tree)
+        public string ConvertLikeTree(ParserTree tree)
         {
-            
+
 
             return "";
         }

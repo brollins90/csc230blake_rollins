@@ -6,8 +6,8 @@
     {
         void Go();
 
-        ParseTree ProcessString(string input);
+        ParserTree ProcessString(string input);
 
-        string ProcessParseTree(ParseTree tree);
+        string ProcessParseTree(ParserTree tree);
     }
 }

@@ -18,7 +18,7 @@
             BParser parser = new BParser(grammar);
 
             var cityNode = new VariableNode("CITY", new TerminalNode("York"), new TerminalNode("New"));
-            var expected = new ParseTree(grammar, cityNode);
+            var expected = new ParserTree(grammar, cityNode);
 
             var actual = parser.ParseStringToTree("New York");
 
@@ -32,7 +32,7 @@
             BParser parser = new BParser(grammar);
 
             var cityNode = new VariableNode("CITY", new TerminalNode("Angeles"), new TerminalNode("Los"));
-            var expected = new ParseTree(grammar, cityNode);
+            var expected = new ParserTree(grammar, cityNode);
 
             var actual = parser.ParseStringToTree("Los Angeles");
 

@@ -5,20 +5,20 @@
     using System.Collections.Generic;
     using System.Collections;
 
-    public class ParseTree // : IEnumerator<ParserNode> //IEquatable<ParseTree>
+    public class ParserTree // : IEnumerator<ParserNode> //IEquatable<ParseTree>
     {
         private IGrammar _grammarReference;
 
         private Stack<ParserNode> _hackingStack;
 
 
-        public ParseTree(IGrammar grammarReference, Stack<ParserNode> stack)
+        public ParserTree(IGrammar grammarReference, Stack<ParserNode> stack)
         {
             _grammarReference = grammarReference;
             _hackingStack = stack;
         }
 
-        public ParseTree(IGrammar grammarReference, ParserNode singleNode)
+        public ParserTree(IGrammar grammarReference, ParserNode singleNode)
         {
             _grammarReference = grammarReference;
             _hackingStack = new Stack<ParserNode>(new[] { singleNode });
@@ -30,7 +30,13 @@
         public bool IsExit() => HeadNode.Equals(_grammarReference.Last);
 
         public override string ToString() => HeadNode?.ToString() ?? "";//$"{string.Join("\n", HackingStack)}"; //HeadNode?.Text ?? "";
-        
+
+        public IEnumerator<ParserNode> GetEnumerator()
+        {
+            foreach (ParserNode node in HeadNode)
+                yield return node;
+        }
+
 
 
         //public override bool Equals(object obj)
@@ -49,5 +55,5 @@
         //{
         //    return base.GetHashCode();
         //}
-    }    
+    }
 }

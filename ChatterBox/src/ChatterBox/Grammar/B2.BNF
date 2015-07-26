@@ -1,9 +1,14 @@
 ﻿Sentence : Statement | Question | LikeStatement | DistanceStatement | DistanceQuestion
+
 Statement : NounPhrase VerbPhrase
 NounPhrase : Article Noun _!'with' | Article Noun Preposition NounPhrase
 VerbPhrase : Verb _'' | Verb NounPhrase
+
 LikeStatement : Pronoun Like VerbPhrase
+
+DistanceStatement : Article Number 'mile' 'road' 'connects' City 'to' City
 DistanceQuestion : 'What' 'is' Article 'shortest' 'route' 'between' City 'and' City '?'
+
 Article : 'a' | 'the'
 Noun : 'dog' | 'cat' | 'fish'
 Verb : 'bite' | 'bites' | 'chase' | 'chases' | 'eat' | 'ski'
@@ -11,6 +16,5 @@ Preposition : 'with' | 'with'
 Pronoun : 'i' | 'you' | 'he' | 'she' |'it' | 'ours' | 'them'
 Like : 'like' | 'likes' | Like 'to'
 City : 'New' 'York' | 'Los' 'Angeles' | 'Chicago' | 'Houston' | 'Philadelphia' | 'Phoenix' | 'San' 'Antonio' | 'San' 'Diego' | 'Dallas' | 'San' 'Jose'
-DistanceStatement : Article Number 'mile' 'road' 'connects' City 'to' City
 Number : '1690' | '2443' | '789' | '1626' | '96' | '2406' | '1821' | '2761' | '1546' | '2939' | '2015' | '1569' | '2711' | '418'  | '1374' | '120' | '1458' | '339'  | '1083' | '759'  | '1753' | '1242' | '2076' | '968'  | '2076' | '1545' | '1175' | '197'  | '1471' | '239' | '1908' | '2342' | '1742' | '2696' | '1467' | '2909' | '980'  | '356'  | '1064' | '734'  | '1277' | '273'  | '1713' | '1358' | '459'
 Exit: 'exit' | 'bye' | 'goodbye' | 'good-bye'
