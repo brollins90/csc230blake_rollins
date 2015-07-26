@@ -1,6 +1,7 @@
 ﻿namespace ChatterBox.Parser
 {
     using Extensions;
+    using Tokenizer;
     using Grammar;
     using System;
     using System.Collections.Generic;
@@ -17,7 +18,7 @@
             _grammar = grammar;
         }
 
-        public ParseTree ParseStringToTree(string input)
+        public ParserTree ParseStringToTree(string input)
         {
             tokenizer = new BTokenizer(input);
 
@@ -30,7 +31,7 @@
                 while (Reduce()) { }
             }
 
-            ParseTree tree = new ParseTree(_grammar, _internalStack);
+            ParserTree tree = new ParserTree(_grammar, _internalStack);
             return tree;
         }
 
@@ -42,6 +43,15 @@
             {
                 var production = _grammar.Productions[i];
                 var lookahead = tokenizer.LookAhead();
+
+                // hack for numbers now
+                int t;
+                if (production.Variable.Compare.Equals("NUMBER") && int.TryParse(_internalStack.Peek().Compare, out t))
+                {
+                    _internalStack.DoPush(production.Variable.ToNode(new[] { _internalStack.Pop() }));
+                    reduced = true;
+                }
+                // end hack
 
                 if (production.Matcher.TryMatch(lookahead, _internalStack))
                 {

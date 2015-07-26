@@ -8,7 +8,7 @@
         private IGrammar _grammar;
         private IGrammar GetGrammar()
         {
-            return _grammar ?? (_grammar = new BFileGrammarReader(@"C:\_\src\School\csc230blake_rollins - Computational Theory\ChatterBox\src\ChatterBox\Grammar\B2.BNF").ReadGrammar());
+            return _grammar ?? (_grammar = new BFileGrammarReader(@"C:\_\src\School\csc230blake_rollins - Computational Theory\ChatterBox\src\ChatterBox.Parser\Grammar\B2.BNF").ReadGrammar());
         }
 
         [Fact]

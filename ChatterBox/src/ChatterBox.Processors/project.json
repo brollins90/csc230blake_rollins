@@ -1,15 +1,13 @@
-{
+﻿{
   "version": "1.0.0-*",
-  "description": "",
-  "authors": [ "brollins" ],
+  "description": "ChatterBox.Processors Class Library",
+  "authors": [ "Blake" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
 
   "dependencies": {
-    "ChatterBox.Parser": "1.0.0-*",
-    "ChatterBox.Processors": "1.0.0-*"
-  },
-
-  "commands": {
-    "ChatterBox": "ChatterBox"
+    "ChatterBox.Parser": "1.0.0-*"
   },
 
   "frameworks": {

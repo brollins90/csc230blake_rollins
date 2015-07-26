@@ -17,5 +17,19 @@
         }
 
         public override string ToString() => $"{string.Join(" ", Children)}";
+
+        public override IEnumerator<ParserNode> GetEnumerator()
+        {
+            yield return this;
+            if (Children != null)
+            {
+                foreach (ParserNode child in Children)
+                {
+                    IEnumerator<ParserNode> childEnum = child.GetEnumerator();
+                    while (childEnum.MoveNext())
+                        yield return childEnum.Current;
+                }
+            }
+        }
     }
 }

@@ -1,13 +1,11 @@
 ﻿namespace ChatterBox
 {
-    using System;
-    using Parser;
-    using System.Diagnostics;
     using Grammar;
-    using System.Linq;
+    using Parser;
     using Processors;
-    using System.Collections.Generic;
     using Processors.Distance;
+    using System;
+    using System.Collections.Generic;
 
     public class ChatterBox : IChatterBox
     {
@@ -63,20 +61,20 @@
         public string ProcessParseTree(ParserTree tree)
         {
             Console.WriteLine(tree);
-            
+
             // only continue if the tree is a valid sentence
             if (!tree.IsValid()) { return NeutralResponse; }
 
             string response = string.Empty;
             bool foundAResponse = false;
-            for(int i = 0; i < _processors.Count && !foundAResponse; i++)
+            for (int i = 0; i < _processors.Count && !foundAResponse; i++)
             {
                 if (_processors[i].TryProcess(tree, out response))
                 {
                     foundAResponse = true;
-                }                
+                }
             }
-            
+
             if (!foundAResponse)
             {
                 response = NeutralResponse;
