@@ -5,6 +5,7 @@
     using Parser;
     using System.Linq;
     using System.Text;
+    using System.Diagnostics;
 
     public class LikeProcessor : IProcessor
     {
@@ -36,7 +37,7 @@
                     {
                         previousNonTerminal = f.Type;
                     }
-                    Console.WriteLine($"f: {f.Type} {f.ToString()}");
+                    //Debug.WriteLine($"f: {f.Type} {f.ToString()}");
                 }
                 sb.Append("often?");
 

@@ -44,6 +44,15 @@
                 var production = _grammar.Productions[i];
                 var lookahead = tokenizer.LookAhead();
 
+                // hack for numbers now
+                int t;
+                if (production.Variable.Compare.Equals("NUMBER") && int.TryParse(_internalStack.Peek().Compare, out t))
+                {
+                    _internalStack.DoPush(production.Variable.ToNode(new[] { _internalStack.Pop() }));
+                    reduced = true;
+                }
+                // end hack
+
                 if (production.Matcher.TryMatch(lookahead, _internalStack))
                 {
                     var tArray = new ParserNode[production.Matcher.Symbols.Count];

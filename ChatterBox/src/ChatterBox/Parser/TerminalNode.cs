@@ -14,7 +14,7 @@
 
         public TerminalNode(string text)
         {
-            Debug.WriteLine($"created  {Type} ({text})");
+            //Debug.WriteLine($"created  {Type} ({text})");
             _text = text;
         }
 

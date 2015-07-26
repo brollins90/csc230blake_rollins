@@ -6,7 +6,7 @@ namespace ChatterBox
     {
         public void Main(string[] args)
         {
-            var reader = new BFileGrammarReader(@"C:\_\src\School\csc230blake_rollins - Computational Theory\ChatterBox\src\ChatterBox\Grammar\B2.BNF");
+            var reader = new BFileGrammarReader(@"C:\_\src\School\csc230blake_rollins - Computational Theory\ChatterBox\src\ChatterBox\Grammar\B3.BNF");
             var grammar = reader.ReadGrammar();
 
 

@@ -28,7 +28,7 @@
 
         public ParserNode ToNode(params ParserNode[] nodes)
         {
-            Debug.WriteLine($"reduced to {Name} ({string.Join<ParserNode>(", ", nodes)})");
+            //Debug.WriteLine($"reduced to {Name} ({string.Join<ParserNode>(", ", nodes)})");
             return new VariableNode(Name, nodes);
         }
 
