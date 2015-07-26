@@ -59,21 +59,21 @@
             // only continue if the tree is a valid sentence
             if (!tree.IsValid()) { return NeutralResponse; }
 
-            if ((tree.HeadNode as VariableNode).Children.First().Type == "LIKESTATEMENT")
+            if (tree.HeadNode.FirstChildType == "LIKESTATEMENT")
             {
                 string a = $"Do {tree.ToString()} often?";
                 a = a.Replace("I ", "you ");
                 a = a.Replace("i ", "you ");
                 Console.WriteLine(a);
             }
-            
-            if ((tree.HeadNode as VariableNode).Children.First().Type == "DISTANCESTATEMENT")
+
+            if (tree.HeadNode.FirstChildType == "DISTANCESTATEMENT")
             {
                 _distances++;
                 Console.WriteLine(_distances);
             }
 
-            if ((tree.HeadNode as VariableNode).Children.First().Type == "DISTANCEQUESTION")
+            if (tree.HeadNode.FirstChildType == "DISTANCEQUESTION")
             {
                 Console.WriteLine("Good question");
             }

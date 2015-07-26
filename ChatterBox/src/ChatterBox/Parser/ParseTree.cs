@@ -1,0 +1,54 @@
+﻿namespace ChatterBox.Parser
+{
+    using Grammar;
+    using System;
+    using System.Collections.Generic;
+    using System.Collections;
+
+    public class ParseTree // : IEnumerator<ParserNode> //IEquatable<ParseTree>
+    {
+        private IGrammar _grammarReference;
+
+        private Stack<ParserNode> _hackingStack;
+
+
+        public ParseTree(IGrammar grammarReference, Stack<ParserNode> stack)
+        {
+            _grammarReference = grammarReference;
+            _hackingStack = stack;
+        }
+
+        public ParseTree(IGrammar grammarReference, ParserNode singleNode)
+        {
+            _grammarReference = grammarReference;
+            _hackingStack = new Stack<ParserNode>(new[] { singleNode });
+        }
+
+        public ParserNode HeadNode => (_hackingStack.Count > 0) ? _hackingStack.Peek() : null;
+
+        public bool IsValid() => HeadNode.Equals(_grammarReference.First);
+        public string Type() => HeadNode.FirstChildType;
+        public bool IsExit() => HeadNode.Equals(_grammarReference.Last);
+
+        public override string ToString() => HeadNode?.ToString() ?? "";//$"{string.Join("\n", HackingStack)}"; //HeadNode?.Text ?? "";
+        
+
+
+        //public override bool Equals(object obj)
+        //{
+        //    if (obj == null) { return false; }
+        //    return Equals(obj as ParseTree);
+        //}
+
+        //public bool Equals(ParseTree other)
+        //{
+        //    if ((object)other == null) { return false; }
+        //    return HeadNode.Equals(HeadNode);
+        //}
+
+        //public override int GetHashCode()
+        //{
+        //    return base.GetHashCode();
+        //}
+    }    
+}
