@@ -1,4 +1,4 @@
-﻿namespace ChatterBox.Processors
+﻿namespace ChatterBox.Processors.Distance
 {
     using System;
     using System.Collections.Generic;

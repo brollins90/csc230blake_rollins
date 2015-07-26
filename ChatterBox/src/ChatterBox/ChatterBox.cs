@@ -7,6 +7,7 @@
     using System.Linq;
     using Processors;
     using System.Collections.Generic;
+    using Processors.Distance;
 
     public class ChatterBox : IChatterBox
     {
