@@ -1,21 +1,38 @@
-﻿//namespace ChatterBox.Parser
-//{
-//    using System.Collections.Generic;
+﻿namespace ChatterBox.Parser
+{
+    using System.Collections.Generic;
 
-//    public class VariableNode : ParserNode
-//    {
+    public class VariableNode : ParserNode
+    {
+        public Stack<ParserNode> Children { get; }
 
-//        // A Variable node is equal if the TYPE is the same
-//        public override string Compare => Type.ToUpperInvariant();
-//        public override string Type { get; }
+        // A Variable node is equal if the TYPE is the same
+        public override string Compare => Type.ToUpperInvariant();
+        public override string Type { get; }
 
-//        public VariableNode(string type, params ParserNode[] children)
-//        {
-//            Type = type;
-//            Children = new Stack<ParserNode>(children);
-//        }
+        public VariableNode(string type, params ParserNode[] children)
+        {
+            Type = type;
+            Children = new Stack<ParserNode>(children);
+        }
 
-//        //public override string ToString() => $"{string.Join(" ", Children)}";
-//        public string ToTextString() => $"{string.Join(" ", Children)}";
-//    }
-//}
+        public override string ToString() => $"{string.Join(" ", Children)}";
+
+        public override IEnumerable<ParserNode> NodeEnumerator
+        {
+            get
+            {
+                yield return this;
+                if (Children != null)
+                {
+                    foreach (ParserNode child in Children)
+                    {
+                        IEnumerator<ParserNode> childEnum = child.NodeEnumerator.GetEnumerator();
+                        while (childEnum.MoveNext())
+                            yield return childEnum.Current;
+                    }
+                }
+            }
+        }
+    }
+}

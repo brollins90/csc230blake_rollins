@@ -3,19 +3,11 @@
     using Grammar;
     using System;
     using System.Collections.Generic;
-    using System.Collections;
 
     public abstract class ParserNode : IEquatable<ParserNode>
     {
-        private Stack<ParserNode> _children;
-        private GrammarSymbol _value;
-        internal string FirstChildType => _children?.Peek()._value.Compare;
-
-        public ParserNode(GrammarSymbol symbol, Stack<ParserNode> children)
-        {
-            _value = symbol;
-            _children = children;
-        }
+        public abstract string Compare { get; }
+        public abstract string Type { get; }
 
 
         public override bool Equals(object obj)
@@ -27,7 +19,7 @@
         public bool Equals(ParserNode other)
         {
             if ((object)other == null) { return false; }
-            return _value.Equals(other._value);
+            return Compare.Equals(other.Compare);
         }
 
         public override int GetHashCode()
@@ -40,24 +32,9 @@
         public bool Equals(GrammarSymbol other)
         {
             if ((object)other == null) { return false; }
-            return _value.Equals(other);
+            return Compare.Equals(other.Compare);
         }
 
-        public IEnumerable<ParserNode> NodeEnumerator
-        {
-            get
-            {
-                yield return this;
-                if (_children != null)
-                {
-                    foreach (ParserNode child in _children)
-                    {
-                        IEnumerator<ParserNode> childEnum = child.NodeEnumerator.GetEnumerator();
-                        while (childEnum.MoveNext())
-                            yield return childEnum.Current;
-                    }
-                }
-            }
-        }
+        public abstract IEnumerable<ParserNode> NodeEnumerator { get; }
     }
 }

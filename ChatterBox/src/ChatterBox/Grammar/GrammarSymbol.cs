@@ -26,11 +26,11 @@
         }
 
 
-        //// Ugly hack?
-        //public bool Equals(ParserNode other)
-        //{
-        //    if ((object)other == null) { return false; }
-        //    return Compare.Equals(other.Compare);
-        //}
+        // Ugly hack?
+        public bool Equals(ParserNode other)
+        {
+            if ((object)other == null) { return false; }
+            return Compare.Equals(other.Compare);
+        }
     }
 }

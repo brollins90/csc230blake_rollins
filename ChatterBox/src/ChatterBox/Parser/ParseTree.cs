@@ -27,7 +27,6 @@
         public ParserNode HeadNode => (_hackingStack.Count > 0) ? _hackingStack.Peek() : null;
 
         public bool IsValid() => HeadNode.Equals(_grammarReference.First);
-        public string Type() => HeadNode.FirstChildType;
         public bool IsExit() => HeadNode.Equals(_grammarReference.Last);
 
         public override string ToString() => HeadNode?.ToString() ?? "";//$"{string.Join("\n", HackingStack)}"; //HeadNode?.Text ?? "";
