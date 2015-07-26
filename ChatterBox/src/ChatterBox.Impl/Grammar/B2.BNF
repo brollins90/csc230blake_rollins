@@ -1,8 +1,9 @@
-﻿Sentence : Statement | Question | LikeStatement | DistanceStatement
+﻿Sentence : Statement | Question | LikeStatement | DistanceStatement | DistanceQuestion
 Statement : NounPhrase VerbPhrase
 NounPhrase : Article Noun _!'with' | Article Noun Preposition NounPhrase
 VerbPhrase : Verb _'' | Verb NounPhrase
 LikeStatement : Pronoun Like VerbPhrase
+DistanceQuestion : 'What' 'is' Article 'shortest' 'route' 'between' City 'and' City '?'
 Article : 'a' | 'the'
 Noun : 'dog' | 'cat' | 'fish'
 Verb : 'bite' | 'bites' | 'chase' | 'chases' | 'eat' | 'ski'

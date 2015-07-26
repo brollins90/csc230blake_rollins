@@ -66,11 +66,16 @@
                 a = a.Replace("i ", "you ");
                 Console.WriteLine(a);
             }
-
+            
             if ((tree.HeadNode as VariableNode).Children.First().Type == "DISTANCESTATEMENT")
             {
                 _distances++;
                 Console.WriteLine(_distances);
+            }
+
+            if ((tree.HeadNode as VariableNode).Children.First().Type == "DISTANCEQUESTION")
+            {
+                Console.WriteLine("Good question");
             }
             //var t = tree.HeadNode.ToString();
             //Console.WriteLine(t);
@@ -149,6 +154,8 @@
             ProcessParseTree(ProcessString("A 459 mile road connects San Diego to San Jose"));
 
             ProcessParseTree(ProcessString("A 1690 mile road connects Dallas to San Jose"));
+
+            ProcessParseTree(ProcessString("What is the shortest route between Dallas and Houston ?"));
         }
     }
 }
